@@ -5,6 +5,7 @@ const app = express();
 const morgan = require('morgan');
 const mongoSanitize = require('express-mongo-sanitize');
 const hpp = require('hpp');
+const compression = require('compression');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -52,7 +53,7 @@ app.use(
   })
 );
 //serve static files
-
+app.use(compression());
 app.use((req, res, next) => {
   req.requesTime = new Date().toISOString();
   next();

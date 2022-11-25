@@ -33,7 +33,7 @@ const importData = async () => {
     await User.create(users, { validateBeforeSave: false });
     await Review.create(reviews);
 
-    console.log('data loaded');
+    // console.log('data loaded');
   } catch (err) {
     console.log(err);
   }
@@ -58,4 +58,4 @@ if (process.argv[2] === '--import') {
 } else if (process.argv[2] === '--delete') {
   clearCollection();
 }
-console.log(process.argv);
+// console.log(process.argv);
