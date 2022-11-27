@@ -17,6 +17,8 @@ const userRouter = require('./routes/userRoutes');
 const AppError = require('./utils/appError');
 const globalErrors = require('./controllers/errorControler');
 
+app.use(compression());
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -53,7 +55,6 @@ app.use(
   })
 );
 //serve static files
-app.use(compression());
 app.use((req, res, next) => {
   req.requesTime = new Date().toISOString();
   next();
