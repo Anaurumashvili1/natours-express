@@ -22,7 +22,8 @@ mongoose
       family: 4,
     }
   )
-  .then(() => {});
+  .then(() => {})
+  .catch((err) => console.log(err));
 
 const app = require('./app');
 
