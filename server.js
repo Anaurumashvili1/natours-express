@@ -12,13 +12,16 @@ dotenv.config({ path: './.env' });
 const DB = process.env.DATABASE;
 
 mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-    family: 4,
-  })
+  .connect(
+    'mongodb+srv://Ana:448848@cluster0.5gynyhe.mongodb.net/Natours?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+      family: 4,
+    }
+  )
   .then(() => {});
 
 const app = require('./app');
