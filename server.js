@@ -9,11 +9,11 @@ process.on('uncaughtException', (err) => {
 
 dotenv.config({ path: './.env' });
 
-const DB = process.env.DATABASE;
+// const DB = process.env.DATABASE;
 
 mongoose
   .connect(
-    'mongodb+srv://Ana:448848@cluster0.5gynyhe.mongodb.net/Natours?retryWrites=true&w=majority',
+    'mongodb+srv://Ana:448848@cluster0.5gynyhe.mongodb.net/test?authSource=admin&replicaSet=atlas-13pynq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
     {
       useNewUrlParser: true,
       useCreateIndex: true,
