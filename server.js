@@ -12,16 +12,13 @@ dotenv.config({ path: './.env' });
 // const DB = process.env.DATABASE;
 
 mongoose
-  .connect(
-    'mongodb+srv://Ana:448848@cluster0.5gynyhe.mongodb.net/test?authSource=admin&replicaSet=atlas-13pynq-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
-    {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-      useUnifiedTopology: true,
-      family: 4,
-    }
-  )
+  .connect('mongodb+srv://Ana:448848@cluster0.5gynyhe.mongodb.net/test', {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    family: 4,
+  })
   .then(() => {});
 
 const app = require('./app');
