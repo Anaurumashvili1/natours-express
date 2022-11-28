@@ -19,7 +19,9 @@ mongoose
     useUnifiedTopology: true,
     family: 4,
   })
-  .then(() => {})
+  .then((res) => {
+    console.log(res);
+  })
   .catch((err) => console.log(err));
 
 const app = require('./app');
