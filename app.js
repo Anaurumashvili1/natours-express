@@ -19,6 +19,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const AppError = require('./utils/appError');
 const globalErrors = require('./controllers/errorControler');
+const { webhookCheckout } = require('./controllers/bookingsController');
 
 app.use(compression());
 
@@ -38,11 +39,17 @@ const limiter = rateLimit({
 });
 app.use(helmet());
 app.use('/api', limiter);
+app.post(
+  'webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  webhookCheckout
+);
+
 // express body parser
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 
-//data sanitization against nosql query injection
+//data sanitization against nosql  query injection
 app.use(mongoSanitize());
 // data sanitization against xss
 app.use(xss());
@@ -68,7 +75,6 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
-
 app.all('*', (req, res, next) => {
   next(new AppError(`cannot find ${req.originalUrl}`, 404));
 });
