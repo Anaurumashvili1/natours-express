@@ -2,9 +2,12 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
+app.enable('trust proxy');
+
 const morgan = require('morgan');
 const mongoSanitize = require('express-mongo-sanitize');
 const hpp = require('hpp');
+const cors = require('cors');
 const compression = require('compression');
 const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
@@ -22,6 +25,8 @@ app.use(compression());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
+app.options('*', cors());
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
